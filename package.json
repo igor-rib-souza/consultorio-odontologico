@@ -2,7 +2,7 @@
   "name": "consultorio-odontologico",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "consultorio.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,6 +14,8 @@
   "author": "igor-rib-souza",
   "license": "ISC",
   "dependencies": {
+    "cpf": "^2.0.1",
+    "date-fns": "^2.30.0",
     "prompt-sync": "^4.2.0"
   }
 }
