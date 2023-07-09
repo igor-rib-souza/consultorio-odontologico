@@ -1,7 +1,6 @@
 import PromptSync from 'prompt-sync';
-import format from 'date-fns/format';
-import Paciente from './paciente';
-import { isValid as isValidCPF } from 'cpf';
+import format from 'date-fns/format/index.js'
+import Paciente from './paciente.js';
 
 
 const prompt = PromptSync({ sigint: true });
@@ -87,8 +86,51 @@ function cadastroPaciente(){
     }
     
     function validaCPF(cpf) {
-        return isValidCPF(cpf);
-    }
+        cpf = cpf.replace(/[^\d]/g, ''); // Remove caracteres não numéricos
+      
+        // Verifica se o CPF possui 11 dígitos
+        if (cpf.length !== 11) {
+          return false;
+        }
+      
+        // Verifica se todos os dígitos são iguais (CPF inválido)
+        if (/^(\d)\1+$/.test(cpf)) {
+          return false;
+        }
+      
+        // Calcula o primeiro dígito verificador
+        let sum = 0;
+        for (let i = 0; i < 9; i++) {
+          sum += parseInt(cpf.charAt(i)) * (10 - i);
+        }
+        let digit = 11 - (sum % 11);
+        if (digit >= 10) {
+          digit = 0;
+        }
+      
+        // Verifica o primeiro dígito verificador
+        if (parseInt(cpf.charAt(9)) !== digit) {
+          return false;
+        }
+      
+        // Calcula o segundo dígito verificador
+        sum = 0;
+        for (let i = 0; i < 10; i++) {
+          sum += parseInt(cpf.charAt(i)) * (11 - i);
+        }
+        digit = 11 - (sum % 11);
+        if (digit >= 10) {
+          digit = 0;
+        }
+      
+        // Verifica o segundo dígito verificador
+        if (parseInt(cpf.charAt(10)) !== digit) {
+          return false;
+        }
+      
+        return true;
+      }
+      
 }
 
 mainMenu()
