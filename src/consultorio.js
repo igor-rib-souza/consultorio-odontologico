@@ -444,22 +444,16 @@ class Consultorio {
   }
 
   exibeAgenda(consultas) {
-    consultas.sort((a, b) => {
-      const [diaA, mesA, anoA] = a.data.split('/');
-      const [diaB, mesB, anoB] = b.data.split('/');
-      const dataA = new Date(anoA, mesA - 1, diaA, a.horaInicial.slice(0, 2), a.horaInicial.slice(2));
-      const dataB = new Date(anoB, mesB - 1, diaB, b.horaInicial.slice(0, 2), b.horaInicial.slice(2));
-      return dataA - dataB;
-    });
-
+    console.log("CPF        Nome                                Dt.Nasc.  Idade");
+    console.log("------------------------------------------------------------");
+  
     for (const consulta of consultas) {
       const paciente = this.pacientes.find(p => p.cpf === consulta.cpf);
-      console.log(`CPF: ${paciente.cpf}`);
-      console.log(`Nome: ${paciente.nome}`);
-      console.log(`Data da Consulta: ${consulta.data}`);
-      console.log(`Hora Inicial: ${consulta.horaInicial}`);
-      console.log(`Hora Final: ${consulta.horaFinal}`);
-      console.log("-----------------------");
+      console.log(`${paciente.cpf} ${this.formatarNome(paciente.nome)} ${paciente.dataNascimento} ${this.calcularIdade(paciente.dataNascimento)}`);
+      console.log("\nAgendado para:");
+      console.log(`${consulta.data}`);
+      console.log(`${this.formatarHora(consulta.horaInicial)} às ${this.formatarHora(consulta.horaFinal)}`);
+      console.log("\n------------------------------------------------------------");
     }
   }
 }
