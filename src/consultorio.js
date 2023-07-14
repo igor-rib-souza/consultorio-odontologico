@@ -21,7 +21,8 @@ class Consultorio {
   mainMenu() {
     let stop = false;
     while (!stop) {
-      const option = this.#prompt("Menu principal\n1-Cadastro de pacientes\n2-Agenda\n3-Fim\n");
+      console.log("Menu principal\n1-Cadastro de pacientes\n2-Agenda\n3-Fim\n")
+      const option = this.#prompt();
 
       switch (option) {
         case '1':
@@ -41,7 +42,8 @@ class Consultorio {
   }
 
   cadastroPaciente() {
-    const option = this.#prompt("Menu do Cadastro de Pacientes\n1-Cadastrar novo paciente\n2-Excluir paciente\n3-Listar pacientes (ordenado por CPF)\n4-Listar pacientes (ordenado por nome)\n5-Voltar p/ menu principal");
+    console.log("Menu do Cadastro de Pacientes\n1-Cadastrar novo paciente\n2-Excluir paciente\n3-Listar pacientes (ordenado por CPF)\n4-Listar pacientes (ordenado por nome)\n5-Voltar p/ menu principal")
+    const option = this.#prompt();
 
     switch (option) {
       case '1':
