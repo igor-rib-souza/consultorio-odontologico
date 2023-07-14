@@ -9,6 +9,8 @@ const consultas = [];
 const pacientes = [];
 
 function mainMenu(){
+  let stop = false;
+  while (!stop){
     const option = prompt("Menu principal\n1-Cadastro de pacientes\n2-Agenda\n3-Fim\n");
 
     switch (option) {
@@ -19,12 +21,15 @@ function mainMenu(){
           agenda();
           break;
         case '3':
+          stop = true;
           break;
         default:
           console.log("Opção inválida, escolha novamente.");
           mainMenu();
           break;
     }
+  }
+   
 }
 
 function cadastroPaciente(){
