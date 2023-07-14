@@ -66,6 +66,12 @@ function cadastroPaciente(){
             console.log("Sua data de nascimento precisa estar no formato DD/MM/AAAA e você precisar ter 13 anos ou mais.");
             return false;
         } else {
+            pacientes.forEach(paciente => {
+              if (paciente.cpf === cpf){
+                console.log("CPF já cadastrado")
+                return false
+              }
+            })
             pacientes.push(new Paciente(cpf, nome, format(new Date(data), "dd/MM/yyyy")))
             return true;
         }
