@@ -313,9 +313,10 @@ class Consultorio {
   }
 
   validarHora(hora) {
-    const horaValida = /^(0[8-9]|1[0-8])([0-5]\d)$/;
+    const horaValida = /^(0[8-9]|1[0-8])([0-5][05])$/;
     return horaValida.test(hora);
   }
+  
 
   verificarConflitoAgendamento(novaConsulta) {
     for (const consulta of this.consultas) {
